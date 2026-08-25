@@ -63,8 +63,8 @@
   },
 
   "giving": {
-    "provider": "PLACEHOLDER — e.g. Pushpay, Tithe.ly",
-    "givingUrl": "PLACEHOLDER — paste the church's existing approved giving link here",
+    "provider": "Tithe.ly",
+    "givingUrl": "https://tithe.ly/give_new/www/#/tithely/give-one-time/1040814",
     "giveByCheckInstructions": "PLACEHOLDER — add mailing instructions for check giving"
   },
 
