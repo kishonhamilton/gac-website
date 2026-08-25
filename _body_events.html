@@ -1,0 +1,64 @@
+  <main id="main">
+    <section class="page-hero">
+      <div class="container">
+        <p class="breadcrumb"><a href="index.html">Home</a> / Events</p>
+        <h1>Events</h1>
+        <p>What's happening at Gospel Assembly Church.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="content-notice">
+          <strong>For the site administrator / developer</strong>
+          This page pulls live event data from the backend's <code>GET /api/events</code>, which
+          proxies Church Community Builder's public calendar (see
+          <code>server/src/routes/events.js</code> and <code>README.md</code>). If the backend is
+          unreachable, the static placeholder cards below are shown instead — replace them or
+          confirm the API connection before launch. Do not publish invented events.
+        </div>
+
+        <div class="section-head align-left">
+          <p class="eyebrow">Upcoming</p>
+          <h2>Upcoming Events</h2>
+          <div class="cornerstone-rule"></div>
+        </div>
+        <div class="card-grid" data-events-grid>
+          <div class="card reveal">
+            <div class="card-media">Event image placeholder</div>
+            <div class="card-body">
+              <span class="card-meta">PLACEHOLDER Date &middot; Time</span>
+              <h3>PLACEHOLDER Event Title</h3>
+              <p>PLACEHOLDER location and description.</p>
+              <a class="btn btn-ghost" href="contact.html" style="margin-top:0.5rem;">Details</a>
+            </div>
+          </div>
+          <div class="card reveal">
+            <div class="card-media">Event image placeholder</div>
+            <div class="card-body">
+              <span class="card-meta">PLACEHOLDER Date &middot; Time</span>
+              <h3>PLACEHOLDER Event Title</h3>
+              <p>PLACEHOLDER location and description.</p>
+              <a class="btn btn-ghost" href="contact.html" style="margin-top:0.5rem;">Details</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="section-head align-left mt-lg">
+          <p class="eyebrow">Archive</p>
+          <h2>Past Events</h2>
+          <div class="cornerstone-rule"></div>
+        </div>
+        <div class="card-grid">
+          <div class="card reveal">
+            <div class="card-media">Event image placeholder</div>
+            <div class="card-body">
+              <span class="card-meta">PLACEHOLDER Date</span>
+              <h3>PLACEHOLDER Past Event</h3>
+              <p>PLACEHOLDER recap text.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>

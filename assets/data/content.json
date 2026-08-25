@@ -1,0 +1,87 @@
+{
+  "_readme": "Edit this file to update site content without touching HTML/CSS/JS. Any field marked PLACEHOLDER must be replaced with real church-supplied content before launch.",
+
+  "church": {
+    "fullName": "Gospel Assembly Church of Jesus Christ (Apostolic), Inc.",
+    "shortName": "Gospel Assembly Church",
+    "tagline": "A Place to Worship. A Place to Grow. A Place to Belong."
+  },
+
+  "serviceTimes": [
+    {
+      "day": "Sunday",
+      "services": [
+        { "name": "Sunday School", "time": "9:30 AM – 10:45 AM", "location": "In Person" },
+        { "name": "Mid-Day Worship", "time": "11:00 AM – 1:30 PM", "location": "In Person" }
+      ]
+    },
+    {
+      "day": "Wednesday",
+      "services": [
+        { "name": "Bible Class", "time": "7:30 PM – 9:00 PM", "location": "Online via Zoom" }
+      ]
+    },
+    {
+      "day": "Thursday",
+      "services": [
+        { "name": "Prayer", "time": "7:30 PM – 9:00 PM", "location": "Online via Zoom" }
+      ]
+    }
+  ],
+
+  "contact": {
+    "address": "140 W 1st St, Mount Vernon, NY 10550",
+    "officeAddress": "10 S 10th Ave, Mount Vernon, NY 10550",
+    "phone": "914-801-0001",
+    "phoneAlt": "914-801-0115",
+    "email": "gac@gospelassemblyny.org",
+    "officeHours": "PLACEHOLDER — add office hours",
+    "campuses": [
+      { "name": "Lithonia, GA Campus", "address": "PLACEHOLDER — add address", "mapEmbedQuery": "PLACEHOLDER" },
+      { "name": "Mount Vernon, NY Campus (HQ)", "address": "140 W 1st St, Mount Vernon, NY 10550", "mapEmbedQuery": "140 W 1st St, Mount Vernon, NY 10550" }
+    ]
+  },
+
+  "social": {
+    "facebook": "",
+    "youtube": "https://www.youtube.com/@gospelassemblychurchny",
+    "instagram": "",
+    "_note": "Leave blank to hide the icon. Only populate with real, existing church-owned accounts."
+  },
+
+  "giving": {
+    "provider": "PLACEHOLDER — e.g. Pushpay, Tithe.ly",
+    "givingUrl": "PLACEHOLDER — paste the church's existing approved giving link here",
+    "giveByCheckInstructions": "PLACEHOLDER — add mailing instructions for check giving"
+  },
+
+  "media": {
+    "youtubeChannelId": "PLACEHOLDER",
+    "liveStreamActive": false
+  },
+
+  "leadership": [
+    {
+      "name": "PLACEHOLDER — Pastor's Name",
+      "title": "PLACEHOLDER — Title",
+      "photo": "PLACEHOLDER",
+      "bio": "PLACEHOLDER — do not invent. Add real biography supplied by the church.",
+      "responsibility": "PLACEHOLDER"
+    }
+  ],
+
+  "ministries": [
+    {
+      "name": "PLACEHOLDER — Ministry Name",
+      "description": "PLACEHOLDER — add real ministry description",
+      "meetingInfo": "PLACEHOLDER",
+      "leader": "PLACEHOLDER",
+      "contact": "PLACEHOLDER"
+    }
+  ],
+
+  "hero": {
+    "imagePlaceholder": true,
+    "imageAlt": "Gospel Assembly Church building exterior — replace assets/img/hero-church.jpg with the supplied photograph"
+  }
+}

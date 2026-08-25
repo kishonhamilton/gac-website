@@ -1,0 +1,21 @@
+{
+  "name": "gac-website-server",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Backend API/auth proxy for the Gospel Assembly Church website. Keeps all CCB/ChMS credentials server-side and exposes a minimal, permission-checked API to the frontend.",
+  "type": "module",
+  "main": "src/index.js",
+  "scripts": {
+    "dev": "node --watch src/index.js",
+    "start": "node src/index.js"
+  },
+  "dependencies": {
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "express-rate-limit": "^7.2.0",
+    "fast-xml-parser": "^4.4.1",
+    "helmet": "^7.1.0"
+  }
+}

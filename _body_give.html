@@ -1,0 +1,60 @@
+  <main id="main">
+    <section class="page-hero">
+      <div class="container">
+        <p class="breadcrumb"><a href="index.html">Home</a> / Give</p>
+        <h1>Give</h1>
+        <p>Your generosity helps us continue the work of ministry, reach our community, and advance the Kingdom of God.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="content-notice">
+          <strong>For the site administrator</strong>
+          Set the real giving provider URL in <code>assets/data/content.json</code> → <code>giving.givingUrl</code>.
+          This site links out to the church's existing approved giving provider (e.g. Pushpay, Tithe.ly) and
+          never collects or stores payment information itself.
+        </div>
+
+        <div class="card-grid">
+          <div class="card reveal">
+            <div class="card-body">
+              <span class="card-meta">Online</span>
+              <h3>Give Online</h3>
+              <p>Give securely through our approved online giving provider.</p>
+              <a class="btn btn-primary" id="giveOnlineLink" href="#" target="_blank" rel="noopener">Give Online</a>
+            </div>
+          </div>
+          <div class="card reveal">
+            <div class="card-body">
+              <span class="card-meta">By Mail</span>
+              <h3>Give by Check</h3>
+              <p id="checkInstructions">PLACEHOLDER — add mailing instructions for check giving.</p>
+            </div>
+          </div>
+          <div class="card reveal">
+            <div class="card-body">
+              <span class="card-meta">In Person</span>
+              <h3>Other Ways to Give</h3>
+              <p>PLACEHOLDER — add any additional approved giving methods (e.g. in-service offering, text-to-give).</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    document.addEventListener('gac:content-ready', function (e) {
+      var content = e.detail;
+      if (!content) return;
+      var link = document.getElementById('giveOnlineLink');
+      if (link && content.giving && content.giving.givingUrl) {
+        link.href = content.giving.givingUrl;
+      }
+      var check = document.getElementById('checkInstructions');
+      if (check && content.giving && content.giving.giveByCheckInstructions) {
+        check.textContent = content.giving.giveByCheckInstructions;
+      }
+    });
+  </script>
