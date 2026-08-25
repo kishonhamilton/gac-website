@@ -1,0 +1,24 @@
+{
+  "name": "gac-website-functions",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Firebase Cloud Function wrapping the GAC website's Express API (CCB/ChMS integration).",
+  "type": "module",
+  "main": "index.js",
+  "engines": {
+    "node": "20"
+  },
+  "scripts": {
+    "serve": "firebase emulators:start --only functions,hosting",
+    "deploy": "firebase deploy --only functions,hosting"
+  },
+  "dependencies": {
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "express-rate-limit": "^7.2.0",
+    "fast-xml-parser": "^4.4.1",
+    "firebase-functions": "^6.0.1",
+    "helmet": "^7.1.0"
+  }
+}
