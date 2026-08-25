@@ -45,11 +45,11 @@ PAGES = {
         "og_type": "website",
         "body": "_body_kids.html",
     },
-    "p6o.html": {
-        "title": "P6O | Gospel Assembly Church",
-        "description": "P6O is our youth ministry — a place for teens to build real friendships and a real faith.",
+    "g5.html": {
+        "title": "G5 | Gospel Assembly Church",
+        "description": "G5 is our youth ministry — a place for teens to build real friendships and a real faith.",
         "og_type": "website",
-        "body": "_body_p6o.html",
+        "body": "_body_g5.html",
     },
     "events.html": {
         "title": "Events | Gospel Assembly Church",
