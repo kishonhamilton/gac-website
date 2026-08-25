@@ -3,19 +3,16 @@ import { defineSecret } from 'firebase-functions/params';
 import express from 'express';
 import helmet from 'helmet';
 import cors from 'cors';
-import cookieParser from 'cookie-parser';
 import { rateLimit } from 'express-rate-limit';
 
-import authRoutes from './src/routes/auth.js';
-import memberRoutes from './src/routes/member.js';
 import contactRoutes from './src/routes/contact.js';
 import eventsRoutes from './src/routes/events.js';
 
 // Sensitive values only — set with:
 //   firebase functions:secrets:set CCB_API_USERNAME
 //   firebase functions:secrets:set CCB_API_PASSWORD
-// Non-secret config (CCB_API_URL, CCB_DIRECT_LOGIN_URL) is read from
-// functions/.env — see functions/.env.example.
+// Non-secret config (CCB_API_URL) is read from functions/.env — see
+// functions/.env.example.
 const ccbApiUsername = defineSecret('CCB_API_USERNAME');
 const ccbApiPassword = defineSecret('CCB_API_PASSWORD');
 
@@ -32,7 +29,6 @@ app.use(
   })
 );
 app.use(express.json({ limit: '100kb' }));
-app.use(cookieParser());
 
 app.use(
   rateLimit({
@@ -43,8 +39,8 @@ app.use(
 
 // Hosting rewrites preserve the original path, so routes keep the
 // same /api/* prefix as the standalone server/ Express app.
-app.use('/api/auth', authRoutes);
-app.use('/api/member', memberRoutes);
+// Member login is a direct link to CCB's own login page (no OAuth/SSO
+// exists on this ChMS plan — see README.md) — no backend route needed.
 app.use('/api', contactRoutes);
 app.use('/api', eventsRoutes);
 

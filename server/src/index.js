@@ -2,11 +2,8 @@ import 'dotenv/config';
 import express from 'express';
 import helmet from 'helmet';
 import cors from 'cors';
-import cookieParser from 'cookie-parser';
 import { rateLimit } from 'express-rate-limit';
 
-import authRoutes from './routes/auth.js';
-import memberRoutes from './routes/member.js';
 import contactRoutes from './routes/contact.js';
 import eventsRoutes from './routes/events.js';
 
@@ -34,7 +31,6 @@ app.use(
   })
 );
 app.use(express.json({ limit: '100kb' }));
-app.use(cookieParser());
 
 // Global rate limit as a baseline; per-route limits (e.g. contact
 // forms) are stricter — see routes/contact.js.
@@ -45,8 +41,6 @@ app.use(
   })
 );
 
-app.use('/api/auth', authRoutes);
-app.use('/api/member', memberRoutes);
 app.use('/api', contactRoutes);
 app.use('/api', eventsRoutes);
 

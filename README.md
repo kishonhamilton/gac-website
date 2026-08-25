@@ -9,31 +9,39 @@ production.
 
 ```
 gac-website/
-├── index.html, about.html, ministries.html, events.html,
-│   sermons.html, give.html, contact.html,
-│   plan-your-visit.html, members.html      ← the public + member pages
+├── index.html, about.html, leaders.html, doctrine.html,
+│   ministries.html, events.html, give.html, contact.html,
+│   plan-your-visit.html                    ← the public pages
 ├── assets/
 │   ├── css/style.css                       ← full design system
 │   ├── js/main.js                          ← nav, parallax, forms, filters
 │   ├── data/content.json                   ← centralized editable content
 │   └── img/                                ← add real photos here
-├── server/                                 ← backend API / CCB proxy scaffold
+├── server/                                 ← backend API for local dev
 │   ├── src/index.js
-│   ├── src/routes/{auth,member,contact}.js
+│   ├── src/routes/{contact,events}.js
 │   ├── src/services/ChurchManagementService.js
-│   ├── src/middleware/requireAuth.js
 │   └── .env.example
-├── _header.html, _footer.html, _body_*.html, build.py   ← page source/build
+├── functions/                              ← same backend, packaged as a
+│                                              Firebase Cloud Function for
+│                                              production (see Deployment)
+├── pages/_header.html, _footer.html, _body_*.html, build.py  ← page source/build
 └── README.md
 ```
 
 **Why static HTML + a small Node API**, rather than a full framework: it's
 the fastest path to something the church's staff can actually maintain
 without a build pipeline, while still giving you a real, secure backend for
-the one thing that truly needs one — CCB authentication and member data.
-If you'd rather run this on Next.js/WordPress/another CMS, the content
-model (`content.json`), design system (`style.css`), and CCB integration
-layer (`server/`) all port over directly.
+the one thing that truly needs one — CCB's events data. If you'd rather run
+this on Next.js/WordPress/another CMS, the content model (`content.json`),
+design system (`style.css`), and CCB integration layer (`server/`) all port
+over directly.
+
+**Member Login is a direct link**, not a backend flow: the confirmed CCB API
+has no OAuth2/SSO, so there's no way for this site to authenticate an
+individual member itself. Every "Member Login" button/link on the site
+points straight to the church's own ChMS login page (opens in a new tab) —
+see the CCB integration section below for why.
 
 ## What's real vs. placeholder
 
@@ -91,11 +99,13 @@ this API.** That means this backend can pull church-wide data (events,
 groups, ministries, announcements) but **cannot authenticate an
 individual site visitor as a specific member.**
 
-Practical consequence: `Member Login` always redirects straight to
-`CCB_DIRECT_LOGIN_URL` (the church's real ChMS login page) — this is not
-a temporary fallback pending SSO confirmation, it's the only option this
-API supports, and it's a fully legitimate, secure approach (the member
-signs in on ChMS's own site; this site never sees the password).
+Practical consequence: every `Member Login` link/button on the site is a
+plain link straight to the church's real ChMS login page
+(`https://gacny.ccbchurch.com/goto/login`) — this is not a temporary
+fallback pending SSO confirmation, it's the only option this API supports,
+and it's a fully legitimate, secure approach (the member signs in on
+ChMS's own site; this site never sees the password). There is
+intentionally no backend route for this — it doesn't need one.
 
 Before implementing the remaining data methods:
 
@@ -111,11 +121,11 @@ Before implementing the remaining data methods:
 3. **The API returns XML, not JSON.** Add an XML parser (e.g.
    `fast-xml-parser`) and use it in `ChurchManagementService._call()`
    before this becomes usable.
-4. There is intentionally no `getMemberProfile` method — a shared
-   service account has no way to resolve "the current member" without a
-   separate per-member identity system, which doesn't exist yet. The
-   `/api/member/*` routes stay behind `requireAuth`, which will 401 every
-   request until such a system is built (see `requireAuth.js`).
+4. There is intentionally no `getMemberProfile` method, and no
+   `/api/member/*` routes — a shared service account has no way to
+   resolve "the current member" without a separate per-member identity
+   system, which doesn't exist. If one gets built later, it'll need its
+   own auth middleware; there's nothing to resurrect here.
 
 **Architecture (enforced in code):**
 ```

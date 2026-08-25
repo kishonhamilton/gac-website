@@ -63,12 +63,6 @@ PAGES = {
         "og_type": "website",
         "body": "_body_plan-your-visit.html",
     },
-    "members.html": {
-        "title": "Member Login | Gospel Assembly Church",
-        "description": "Secure member login for Gospel Assembly Church, powered by Church Community Builder.",
-        "og_type": "website",
-        "body": "_body_members.html",
-    },
 }
 
 HEAD_TEMPLATE = """<!doctype html>

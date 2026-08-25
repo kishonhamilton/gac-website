@@ -200,17 +200,6 @@
     });
   }
 
-  /* ---------- Member login stub ---------- */
-  function initMemberLogin() {
-    document.querySelectorAll('[data-member-login]').forEach((btn) => {
-      btn.addEventListener('click', (e) => {
-        // In production this points at /api/auth/login on the backend,
-        // which redirects to the CCB/ChMS login or SSO flow.
-        // See server/src/routes/auth.js and README.md.
-      });
-    });
-  }
-
   document.addEventListener('DOMContentLoaded', () => {
     initHeader();
     initMobileNav();
@@ -218,7 +207,6 @@
     initParallax();
     initReveal();
     initForms();
-    initMemberLogin();
     loadContent().then((content) => {
       renderServiceTimes(content);
       renderFooterContent(content);
