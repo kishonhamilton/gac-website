@@ -95,25 +95,6 @@
       </div>
     </section>
 
-    <section class="section section-alt">
-      <div class="container">
-        <div class="section-head align-left">
-          <p class="eyebrow">Archive</p>
-          <h2>Past Events</h2>
-          <div class="cornerstone-rule"></div>
-        </div>
-        <div class="card-grid">
-          <div class="card reveal">
-            <div class="card-media">Event image placeholder</div>
-            <div class="card-body">
-              <span class="card-meta">PLACEHOLDER Date</span>
-              <h3>PLACEHOLDER Past Event</h3>
-              <p>PLACEHOLDER recap text.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
   </main>
 
   <div class="event-modal-overlay" id="eventModalOverlay">
@@ -221,7 +202,16 @@
           openModalForDate(dateOnly, dayEvents);
         },
         eventClick: function (info) {
+          // FullCalendar renders events as <a> elements; without this,
+          // a click can trigger default link navigation instead of (or
+          // in addition to) opening the modal.
+          if (info.jsEvent) info.jsEvent.preventDefault();
           openModalForDate(info.event.startStr.slice(0, 10), [info.event]);
+        },
+        eventDidMount: function (info) {
+          info.el.setAttribute('tabindex', '0');
+          info.el.setAttribute('role', 'button');
+          info.el.setAttribute('aria-label', info.event.title);
         },
       });
       calendar.render();
