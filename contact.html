@@ -171,11 +171,14 @@
   </main>
 
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" integrity="sha256-YU3qCpj/P06tdPBJGPax0bm6Q1wltfwjsho5TR4+TYc=" crossorigin="">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" integrity="sha256-YSWCMtmNZNwqex4CEw1nQhvFub2lmU7vcCKP+XVwwXA=" crossorigin="">
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js" integrity="sha256-Hk4dIpcqOSb0hZjgyvFOP+cEmDXUKKNE/tT542ZbNQg=" crossorigin=""></script>
   <script>
     document.addEventListener('DOMContentLoaded', function () {
       var mapEl = document.getElementById('campus-map');
-      if (!mapEl || typeof L === 'undefined') return;
+      if (!mapEl || typeof L === 'undefined' || typeof L.markerClusterGroup === 'undefined') return;
 
       var campuses = [
         { name: 'Mount Vernon, NY Campus (HQ)', address: '140 W 1st St, Mount Vernon, NY 10550', lat: 40.910121, lng: -73.842552 },
@@ -197,18 +200,32 @@
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
       }).addTo(map);
 
-      var markers = campuses.map(function (c) {
-        var directionsUrl = 'https://www.google.com/maps/dir/?api=1&destination=' + encodeURIComponent(c.address);
-        return L.marker([c.lat, c.lng], { icon: pinIcon, title: c.name })
-          .addTo(map)
-          .bindPopup(
-            '<strong>' + c.name + '</strong><br>' + c.address +
-            '<br><a href="' + directionsUrl + '" target="_blank" rel="noopener">Get Directions &rarr;</a>'
-          );
+      // Mount Vernon and Williamsbridge are only ~2 miles apart, so at a
+      // zoom wide enough to also show Lithonia, GA their pins would sit
+      // on top of each other. Clustering keeps every campus visible —
+      // overlapping pins show a count badge that splits apart on zoom/click.
+      var clusterGroup = L.markerClusterGroup({
+        maxClusterRadius: 50,
+        iconCreateFunction: function (cluster) {
+          return L.divIcon({
+            className: 'campus-map-cluster',
+            html: '<span>' + cluster.getChildCount() + '</span>',
+            iconSize: [36, 36],
+          });
+        },
       });
 
-      var group = L.featureGroup(markers);
-      map.fitBounds(group.getBounds(), { padding: [40, 40] });
+      campuses.forEach(function (c) {
+        var directionsUrl = 'https://www.google.com/maps/dir/?api=1&destination=' + encodeURIComponent(c.address);
+        var marker = L.marker([c.lat, c.lng], { icon: pinIcon, title: c.name }).bindPopup(
+          '<strong>' + c.name + '</strong><br>' + c.address +
+          '<br><a href="' + directionsUrl + '" target="_blank" rel="noopener">Get Directions &rarr;</a>'
+        );
+        clusterGroup.addLayer(marker);
+      });
+
+      map.addLayer(clusterGroup);
+      map.fitBounds(clusterGroup.getBounds(), { padding: [40, 40] });
     });
   </script>
 

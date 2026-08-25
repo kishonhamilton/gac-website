@@ -699,6 +699,21 @@ img { max-width: 100%; display: block; }
   transform: rotate(-45deg);
   box-shadow: var(--shadow-soft);
 }
+.campus-map-cluster span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background: var(--navy-950);
+  border: 3px solid var(--cream-50);
+  border-radius: 50%;
+  color: var(--cream-50);
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 0.9rem;
+  box-shadow: var(--shadow-soft);
+}
 
 /* Two-col info list (plan your visit) */
 .faq-list { display: grid; gap: 1.6rem; }
