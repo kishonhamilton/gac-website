@@ -24,36 +24,6 @@
     <section class="section section-alt">
       <div class="container">
         <div class="section-head align-left">
-          <p class="eyebrow">Upcoming</p>
-          <h2>Upcoming Events</h2>
-          <div class="cornerstone-rule"></div>
-        </div>
-        <div class="card-grid" data-events-grid>
-          <div class="card reveal">
-            <div class="card-media">Event image placeholder</div>
-            <div class="card-body">
-              <span class="card-meta">PLACEHOLDER Date &middot; Time</span>
-              <h3>PLACEHOLDER Event Title</h3>
-              <p>PLACEHOLDER location and description.</p>
-              <a class="btn btn-ghost" href="contact.html" style="margin-top:0.5rem;">Details</a>
-            </div>
-          </div>
-          <div class="card reveal">
-            <div class="card-media">Event image placeholder</div>
-            <div class="card-body">
-              <span class="card-meta">PLACEHOLDER Date &middot; Time</span>
-              <h3>PLACEHOLDER Event Title</h3>
-              <p>PLACEHOLDER location and description.</p>
-              <a class="btn btn-ghost" href="contact.html" style="margin-top:0.5rem;">Details</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container">
-        <div class="section-head align-left">
           <p class="eyebrow">Archive</p>
           <h2>Past Events</h2>
           <div class="cornerstone-rule"></div>
@@ -141,7 +111,7 @@
 
       var calendar = new FullCalendar.Calendar(calendarEl, {
         initialView: 'dayGridMonth',
-        headerToolbar: { left: 'prev,next today', center: 'title', right: 'dayGridMonth,listMonth' },
+        headerToolbar: { left: 'prev,next today', center: 'title', right: 'dayGridMonth,timeGridWeek,listMonth' },
         height: 'auto',
         events: function (info, successCallback, failureCallback) {
           fetch(API_BASE + '/api/events?date_start=' + info.startStr.slice(0, 10) + '&date_end=' + info.endStr.slice(0, 10))
@@ -170,10 +140,11 @@
             });
         },
         dateClick: function (info) {
+          var dateOnly = info.dateStr.slice(0, 10);
           var dayEvents = calendar.getEvents().filter(function (ev) {
-            return ev.startStr.slice(0, 10) === info.dateStr;
+            return ev.startStr.slice(0, 10) === dateOnly;
           });
-          openModalForDate(info.dateStr, dayEvents);
+          openModalForDate(dateOnly, dayEvents);
         },
         eventClick: function (info) {
           openModalForDate(info.event.startStr.slice(0, 10), [info.event]);

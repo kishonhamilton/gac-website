@@ -179,58 +179,6 @@
     return div.innerHTML;
   }
 
-  /* ---------- Render upcoming events from the backend API ---------- */
-  function formatEventDate(dateStr) {
-    const d = new Date(`${dateStr}T00:00:00`);
-    if (isNaN(d)) return dateStr;
-    return d.toLocaleDateString(undefined, { weekday: 'short', month: 'short', day: 'numeric' });
-  }
-
-  function formatEventTime(ev) {
-    if (ev.startTime === '00:00:00' && ev.endTime === '23:59:59') return 'All Day';
-    const fmt = (t) => {
-      const d = new Date(`${ev.date}T${t}`);
-      return isNaN(d) ? t : d.toLocaleTimeString(undefined, { hour: 'numeric', minute: '2-digit' });
-    };
-    return ev.endTime ? `${fmt(ev.startTime)} – ${fmt(ev.endTime)}` : fmt(ev.startTime);
-  }
-
-  function truncate(str, max) {
-    if (!str || str.length <= max) return str || '';
-    return str.slice(0, max).replace(/\s+\S*$/, '') + '…';
-  }
-
-  async function initEvents() {
-    const mount = document.querySelector('[data-events-grid]');
-    if (!mount) return;
-    try {
-      const res = await fetch(`${API_BASE}/api/events`);
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      const { events } = await res.json();
-      if (!events || !events.length) return; // leave static placeholder cards in place
-
-      mount.innerHTML = events
-        .slice(0, 6)
-        .map((ev) => {
-          const summary = [ev.location, truncate(ev.description, 140)].filter(Boolean).join(' — ');
-          return `
-        <div class="card reveal">
-          <div class="card-media">${escapeHtml(formatEventDate(ev.date))}</div>
-          <div class="card-body">
-            <span class="card-meta">${escapeHtml(formatEventTime(ev))}</span>
-            <h3>${escapeHtml(ev.title)}</h3>
-            <p>${escapeHtml(summary || 'Details coming soon.')}</p>
-            <a class="btn btn-ghost" href="contact.html" style="margin-top:0.5rem;">Details</a>
-          </div>
-        </div>`;
-        })
-        .join('');
-      initReveal();
-    } catch (err) {
-      console.warn('[GAC] Could not load live events, showing static placeholders.', err);
-    }
-  }
-
   /* ---------- Generic form handling (visitor / contact) ---------- */
   function initForms() {
     document.querySelectorAll('form[data-form]').forEach((form) => {
@@ -271,7 +219,6 @@
     initReveal();
     initForms();
     initMemberLogin();
-    initEvents();
     loadContent().then((content) => {
       renderServiceTimes(content);
       renderFooterContent(content);
