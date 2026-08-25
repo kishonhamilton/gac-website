@@ -1,11 +1,5 @@
 {
-  "_readme": "Edit this file to update site content without touching HTML/CSS/JS. Any field marked PLACEHOLDER must be replaced with real church-supplied content before launch.",
-
-  "church": {
-    "fullName": "Gospel Assembly Church of Jesus Christ (Apostolic), Inc.",
-    "shortName": "Gospel Assembly Church",
-    "tagline": "A Place to Worship. A Place to Grow. A Place to Belong."
-  },
+  "_readme": "Edit this file to update site content without touching HTML/CSS/JS. Any field marked PLACEHOLDER must be replaced with real church-supplied content before launch. Every field below is actually read by the site — see assets/js/main.js (serviceTimes, contact, social) and pages/_body_give.html (giving).",
 
   "serviceTimes": [
     {
@@ -47,12 +41,7 @@
     "officeAddress": "10 S 10th Ave, Mount Vernon, NY 10550",
     "phone": "914-801-0001",
     "phoneAlt": "914-801-0115",
-    "email": "gac@gospelassemblyny.org",
-    "officeHours": "PLACEHOLDER — add office hours",
-    "campuses": [
-      { "name": "Lithonia, GA Campus", "address": "PLACEHOLDER — add address", "mapEmbedQuery": "PLACEHOLDER" },
-      { "name": "Mount Vernon, NY Campus (HQ)", "address": "140 W 1st St, Mount Vernon, NY 10550", "mapEmbedQuery": "140 W 1st St, Mount Vernon, NY 10550" }
-    ]
+    "email": "gac@gospelassemblyny.org"
   },
 
   "social": {
@@ -66,35 +55,5 @@
     "provider": "Tithe.ly",
     "givingUrl": "https://tithe.ly/give_new/www/#/tithely/give-one-time/1040814",
     "giveByCheckInstructions": "Make checks payable to Gospel Assembly Church of Jesus Christ (Apostolic), Inc. and mail to our office: 10 S 10th Ave, Mount Vernon, NY 10550."
-  },
-
-  "media": {
-    "youtubeChannelId": "PLACEHOLDER",
-    "liveStreamActive": false
-  },
-
-  "leadership": [
-    {
-      "name": "PLACEHOLDER — Pastor's Name",
-      "title": "PLACEHOLDER — Title",
-      "photo": "PLACEHOLDER",
-      "bio": "PLACEHOLDER — do not invent. Add real biography supplied by the church.",
-      "responsibility": "PLACEHOLDER"
-    }
-  ],
-
-  "ministries": [
-    {
-      "name": "PLACEHOLDER — Ministry Name",
-      "description": "PLACEHOLDER — add real ministry description",
-      "meetingInfo": "PLACEHOLDER",
-      "leader": "PLACEHOLDER",
-      "contact": "PLACEHOLDER"
-    }
-  ],
-
-  "hero": {
-    "imagePlaceholder": true,
-    "imageAlt": "Gospel Assembly Church building exterior — replace assets/img/hero-church.jpg with the supplied photograph"
   }
 }
