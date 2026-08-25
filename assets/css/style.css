@@ -38,7 +38,7 @@
   --step-4:  clamp(2.4rem, 1.9rem + 2.2vw, 3.6rem);
   --step-5:  clamp(3rem, 2.2rem + 3.6vw, 5rem);
 
-  --radius: 4px;
+  --radius: 14px;
   --shadow-soft: 0 10px 30px -12px rgba(16, 25, 46, 0.25);
   --nav-height: 76px;
 }
@@ -91,10 +91,19 @@ img { max-width: 100%; display: block; }
   font-family: var(--font-body);
   font-weight: 700;
   font-size: var(--step--1);
-  letter-spacing: 0.14em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--brick-600);
+  background: rgba(161, 61, 46, 0.08);
+  border: 1px solid rgba(161, 61, 46, 0.18);
+  border-radius: 999px;
+  padding: 0.4em 1em;
   margin-bottom: 0.9em;
+}
+.section-navy .eyebrow {
+  color: var(--gold-300);
+  background: rgba(228, 205, 156, 0.1);
+  border-color: rgba(228, 205, 156, 0.3);
 }
 
 /* Signature brick-coursed divider */
@@ -152,8 +161,8 @@ img { max-width: 100%; display: block; }
   letter-spacing: 0.03em;
   text-transform: uppercase;
   text-decoration: none;
-  padding: 0.95em 1.9em;
-  border-radius: var(--radius);
+  padding: 1em 2.1em;
+  border-radius: 999px;
   border: 1.5px solid transparent;
   cursor: pointer;
   transition: transform 0.18s ease, background 0.18s ease, color 0.18s ease, border-color 0.18s ease;
@@ -361,11 +370,16 @@ img { max-width: 100%; display: block; }
   padding-top: calc(var(--nav-height) + 2rem);
 }
 .hero-eyebrow {
+  display: inline-block;
   font-weight: 700;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   font-size: 0.8rem;
   color: var(--gold-300);
+  background: rgba(228, 205, 156, 0.1);
+  border: 1px solid rgba(228, 205, 156, 0.3);
+  border-radius: 999px;
+  padding: 0.4em 1.1em;
   margin-bottom: 1rem;
 }
 .hero h1 {
