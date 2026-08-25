@@ -40,7 +40,7 @@
 
   --radius: 14px;
   --shadow-soft: 0 10px 30px -12px rgba(16, 25, 46, 0.25);
-  --nav-height: 76px;
+  --nav-height: 92px;
 }
 
 /* =====================  Reset & base  ===================== */
@@ -245,6 +245,10 @@ img { max-width: 100%; display: block; }
   height: 40px;
   object-fit: contain;
   flex-shrink: 0;
+}
+.site-header .brand-logo {
+  width: 64px;
+  height: 64px;
 }
 
 .primary-nav { display: none; }
