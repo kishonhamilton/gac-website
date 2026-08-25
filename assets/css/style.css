@@ -685,11 +685,14 @@ img { max-width: 100%; display: block; }
 .form-status.ok { background: #e5f3ea; color: #1f6b3e; }
 .form-status.err { background: #fbe6e2; color: var(--brick-700); }
 
+.contact-form-section {
+  max-width: 640px;
+  margin-inline: auto;
+}
 .contact-form-embed {
   margin-top: 1.25rem;
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  box-shadow: var(--shadow-soft);
   overflow: hidden;
   background: var(--cream-50);
 }
