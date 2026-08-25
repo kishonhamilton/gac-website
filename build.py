@@ -16,10 +16,16 @@ PAGES = {
         "body": "_body_index.html",
     },
     "about.html": {
-        "title": "About Us | Gospel Assembly Church",
-        "description": "Learn about Gospel Assembly Church of Jesus Christ (Apostolic), Inc. — our story, mission, vision, beliefs, and leadership.",
+        "title": "Church | Gospel Assembly Church",
+        "description": "Learn about Gospel Assembly Church of Jesus Christ (Apostolic), Inc. — our story, mission, vision, beliefs, and campuses.",
         "og_type": "website",
         "body": "_body_about.html",
+    },
+    "leaders.html": {
+        "title": "Meet Our Leaders | Gospel Assembly Church",
+        "description": "Meet the pastors leading Gospel Assembly Church of Jesus Christ (Apostolic), Inc.",
+        "og_type": "website",
+        "body": "_body_leaders.html",
     },
     "doctrine.html": {
         "title": "Our Doctrine | Gospel Assembly Church",
