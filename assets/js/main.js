@@ -8,7 +8,7 @@
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   /* ---------- Content config ---------- */
-  const CONTENT_URL = '/assets/data/content.json';
+  const CONTENT_URL = 'assets/data/content.json';
   let siteContent = null;
 
   /* ---------- Backend API base ----------

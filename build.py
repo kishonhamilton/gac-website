@@ -72,13 +72,13 @@ HEAD_TEMPLATE = """<!doctype html>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{title}</title>
   <meta name="description" content="{description}">
-  <link rel="canonical" href="https://www.example-gac-domain.org/{path}">
+  <link rel="canonical" href="https://kishonhamilton.github.io/gac-website/{path}">
 
   <meta property="og:title" content="{title}">
   <meta property="og:description" content="{description}">
   <meta property="og:type" content="{og_type}">
-  <meta property="og:url" content="https://www.example-gac-domain.org/{path}">
-  <meta property="og:image" content="/assets/img/og-cover.jpg">
+  <meta property="og:url" content="https://kishonhamilton.github.io/gac-website/{path}">
+  <meta property="og:image" content="https://kishonhamilton.github.io/gac-website/assets/img/og-cover.jpg">
   <meta name="twitter:card" content="summary_large_image">
 
   <link rel="icon" type="image/png" sizes="32x32" href="assets/img/brand/favicon-32.png">
@@ -91,7 +91,7 @@ HEAD_TEMPLATE = """<!doctype html>
     "@context": "https://schema.org",
     "@type": "Church",
     "name": "Gospel Assembly Church of Jesus Christ (Apostolic), Inc.",
-    "url": "https://www.example-gac-domain.org/",
+    "url": "https://kishonhamilton.github.io/gac-website/",
     "sameAs": []
   }}
   </script>
