@@ -1,10 +1,11 @@
 import os
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
+PAGES_DIR = os.path.join(ROOT, "pages")
 
-with open(os.path.join(ROOT, "_header.html"), encoding="utf-8") as f:
+with open(os.path.join(PAGES_DIR, "_header.html"), encoding="utf-8") as f:
     HEADER = f.read()
-with open(os.path.join(ROOT, "_footer.html"), encoding="utf-8") as f:
+with open(os.path.join(PAGES_DIR, "_footer.html"), encoding="utf-8") as f:
     FOOTER = f.read()
 
 PAGES = {
@@ -105,7 +106,7 @@ FOOT_TEMPLATE = """</body>
 
 def build():
     for path, meta in PAGES.items():
-        body_path = os.path.join(ROOT, meta["body"])
+        body_path = os.path.join(PAGES_DIR, meta["body"])
         with open(body_path, encoding="utf-8") as f:
             body = f.read()
 
