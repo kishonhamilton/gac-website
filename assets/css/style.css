@@ -653,38 +653,6 @@ img { max-width: 100%; display: block; }
 .doctrine-item p { margin-bottom: 0.85em; }
 .doctrine-item p:last-child { margin-bottom: 0; }
 
-/* Forms */
-.form-grid {
-  display: grid;
-  gap: 1.2rem;
-  grid-template-columns: 1fr;
-  max-width: 640px;
-}
-@media (min-width: 640px) {
-  .form-grid.two-up { grid-template-columns: 1fr 1fr; }
-}
-.field { display: flex; flex-direction: column; gap: 0.4rem; }
-.field.full { grid-column: 1 / -1; }
-.field label { font-weight: 700; font-size: 0.88rem; color: var(--navy-950); }
-.field input, .field select, .field textarea {
-  font-family: var(--font-body);
-  font-size: 1rem;
-  padding: 0.85em 1em;
-  border: 1.5px solid var(--line);
-  border-radius: var(--radius);
-  background: var(--cream-50);
-  color: var(--ink-900);
-}
-.field input:focus, .field select:focus, .field textarea:focus {
-  border-color: var(--brick-600);
-}
-.field textarea { min-height: 120px; resize: vertical; }
-.form-note { font-size: 0.85rem; color: var(--ink-600); margin-top: -0.4rem; }
-.form-status { display: none; padding: 1rem 1.2rem; border-radius: var(--radius); margin-top: 1rem; font-weight: 600; }
-.form-status.show { display: block; }
-.form-status.ok { background: #e5f3ea; color: #1f6b3e; }
-.form-status.err { background: #fbe6e2; color: var(--brick-700); }
-
 .contact-form-section {
   max-width: 640px;
   margin-inline: auto;

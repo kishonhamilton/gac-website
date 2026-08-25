@@ -5,7 +5,6 @@ import helmet from 'helmet';
 import cors from 'cors';
 import { rateLimit } from 'express-rate-limit';
 
-import contactRoutes from './src/routes/contact.js';
 import eventsRoutes from './src/routes/events.js';
 
 // Sensitive values only — set with:
@@ -41,7 +40,8 @@ app.use(
 // same /api/* prefix as the standalone server/ Express app.
 // Member login is a direct link to CCB's own login page (no OAuth/SSO
 // exists on this ChMS plan — see README.md) — no backend route needed.
-app.use('/api', contactRoutes);
+// Contact and visitor forms are CCB iframe embeds (see contact.html,
+// plan-your-visit.html) — no backend route needed for them either.
 app.use('/api', eventsRoutes);
 
 app.get('/api/health', (req, res) => res.json({ ok: true }));

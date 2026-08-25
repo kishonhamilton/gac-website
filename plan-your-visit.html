@@ -167,32 +167,20 @@
 
     <section class="section section-alt">
       <div class="container">
-        <div class="section-head">
+        <div class="reveal contact-form-section">
           <p class="eyebrow">I'm New Here</p>
           <h2>Let Us Know You're Coming</h2>
-          <div class="cornerstone-rule"></div>
-          <p>Fill out this short form and our welcome team will be watching for you.</p>
+          <p>Fill this out and our welcome team will be watching for you.</p>
+          <div class="contact-form-embed">
+            <iframe
+              src="https://gacny.ccbchurch.com/goto/forms/49/responses/new"
+              title="Gospel Assembly Church visitor form"
+              loading="lazy"></iframe>
+          </div>
+          <p style="margin-top:0.75rem; font-size:0.85rem;">
+            Form not loading? <a href="https://gacny.ccbchurch.com/goto/forms/49/responses/new" target="_blank" rel="noopener">Open it in a new tab &rarr;</a>
+          </p>
         </div>
-        <form class="form-grid two-up" style="margin-inline:auto;" data-form aria-label="Visitor form">
-          <div class="field"><label for="vFirst">First Name</label><input id="vFirst" name="firstName" type="text" required></div>
-          <div class="field"><label for="vLast">Last Name</label><input id="vLast" name="lastName" type="text" required></div>
-          <div class="field"><label for="vEmail">Email</label><input id="vEmail" name="email" type="email" required></div>
-          <div class="field"><label for="vPhone">Phone</label><input id="vPhone" name="phone" type="tel"></div>
-          <div class="field full">
-            <label for="vContactMethod">Preferred Contact Method</label>
-            <select id="vContactMethod" name="preferredContact">
-              <option>Email</option>
-              <option>Phone</option>
-              <option>Text</option>
-            </select>
-          </div>
-          <div class="field full"><label for="vMessage">Message (optional)</label><textarea id="vMessage" name="message"></textarea></div>
-          <p class="form-note full">This form is designed to sync with Church Community Builder (CCB) once configured — see README.md.</p>
-          <div class="field full">
-            <button class="btn btn-primary" type="submit">I'm New Here</button>
-            <div class="form-status" role="status"></div>
-          </div>
-        </form>
       </div>
     </section>
   </main>

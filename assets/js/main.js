@@ -179,34 +179,12 @@
     return div.innerHTML;
   }
 
-  /* ---------- Generic form handling (visitor / contact) ---------- */
-  function initForms() {
-    document.querySelectorAll('form[data-form]').forEach((form) => {
-      form.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const status = form.querySelector('.form-status');
-        // NOTE: This is a front-end stub. Wire this up to your backend
-        // endpoint (e.g. POST /api/contact) which should validate,
-        // rate-limit, and forward to CCB or email — see README.md.
-        if (status) {
-          status.textContent =
-            'Thank you — your message has been received. Our team will follow up soon. ' +
-            '(Demo form: connect this to a backend endpoint per README.md before launch.)';
-          status.classList.remove('err');
-          status.classList.add('show', 'ok');
-        }
-        form.reset();
-      });
-    });
-  }
-
   document.addEventListener('DOMContentLoaded', () => {
     initHeader();
     initMobileNav();
     markCurrentNav();
     initParallax();
     initReveal();
-    initForms();
     loadContent().then((content) => {
       renderServiceTimes(content);
       renderFooterContent(content);

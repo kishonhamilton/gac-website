@@ -4,7 +4,6 @@ import helmet from 'helmet';
 import cors from 'cors';
 import { rateLimit } from 'express-rate-limit';
 
-import contactRoutes from './routes/contact.js';
 import eventsRoutes from './routes/events.js';
 
 const app = express();
@@ -32,8 +31,6 @@ app.use(
 );
 app.use(express.json({ limit: '100kb' }));
 
-// Global rate limit as a baseline; per-route limits (e.g. contact
-// forms) are stricter — see routes/contact.js.
 app.use(
   rateLimit({
     windowMs: 60 * 1000,
@@ -41,7 +38,8 @@ app.use(
   })
 );
 
-app.use('/api', contactRoutes);
+// Contact and visitor forms are CCB iframe embeds (see contact.html,
+// plan-your-visit.html) — no backend route needed for them.
 app.use('/api', eventsRoutes);
 
 app.get('/api/health', (req, res) => res.json({ ok: true }));
