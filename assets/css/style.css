@@ -269,6 +269,53 @@ img { max-width: 100%; display: block; }
 .primary-nav a:hover,
 .primary-nav a[aria-current="page"] { border-color: var(--gold-500); }
 
+/* Dropdown (desktop "About" sub-nav) */
+.primary-nav li.has-dropdown { position: relative; }
+.primary-nav li.has-dropdown > a::after {
+  content: '';
+  display: inline-block;
+  width: 5px; height: 5px;
+  margin-left: 0.4em;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: rotate(45deg) translateY(-2px);
+}
+.primary-nav .dropdown-menu {
+  list-style: none;
+  position: absolute;
+  top: 100%;
+  left: -1rem;
+  margin: 0.75rem 0 0;
+  padding: 0.6rem 0;
+  min-width: 220px;
+  background: var(--cream-50);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-soft);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-6px);
+  transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s;
+  z-index: 50;
+}
+.primary-nav li.has-dropdown:hover > .dropdown-menu,
+.primary-nav li.has-dropdown:focus-within > .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+.primary-nav .dropdown-menu li { display: block; }
+.primary-nav .dropdown-menu a {
+  display: block;
+  color: var(--navy-950);
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  font-weight: 500;
+  padding: 0.55rem 1.2rem;
+  border-bottom: none;
+  white-space: nowrap;
+}
+.primary-nav .dropdown-menu a:hover { background: var(--cream-100); }
+
 .nav-actions { display: flex; align-items: center; gap: 0.75rem; }
 .member-btn {
   border: 1.5px solid var(--gold-500);
@@ -315,6 +362,19 @@ img { max-width: 100%; display: block; }
   padding: 0.6rem 0;
   border-bottom: 1px solid var(--line-dark);
 }
+.mobile-nav .mobile-subnav {
+  padding: 0.2rem 0 0.6rem 1rem;
+  margin: 0;
+}
+.mobile-nav .mobile-subnav a {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 600;
+  color: rgba(250, 246, 239, 0.75);
+  padding: 0.5rem 0;
+  border-bottom: none;
+}
+.mobile-nav .mobile-subnav a:hover { color: var(--gold-300); }
 .mobile-nav .nav-actions { margin-top: 1.5rem; flex-direction: column; align-items: stretch; }
 .mobile-nav .btn { width: 100%; }
 
@@ -678,7 +738,7 @@ img { max-width: 100%; display: block; }
   border-bottom: 1px solid var(--line-dark);
 }
 @media (min-width: 760px) {
-  .footer-grid { grid-template-columns: 1.4fr 1fr 1fr 1fr; }
+  .footer-grid { grid-template-columns: 1.4fr 1fr 1fr; }
 }
 .site-footer h4 {
   color: var(--gold-300);
