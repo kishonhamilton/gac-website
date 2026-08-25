@@ -39,6 +39,18 @@ PAGES = {
         "og_type": "website",
         "body": "_body_ministries.html",
     },
+    "kids.html": {
+        "title": "GAC Kids | Gospel Assembly Church",
+        "description": "GAC Kids is our children's ministry — a safe, fun, Christ-centered space where kids grow in faith every Sunday.",
+        "og_type": "website",
+        "body": "_body_kids.html",
+    },
+    "p6o.html": {
+        "title": "P6O | Gospel Assembly Church",
+        "description": "P6O is our youth ministry — a place for teens to build real friendships and a real faith.",
+        "og_type": "website",
+        "body": "_body_p6o.html",
+    },
     "events.html": {
         "title": "Events | Gospel Assembly Church",
         "description": "Upcoming and past events at Gospel Assembly Church of Jesus Christ (Apostolic), Inc.",
