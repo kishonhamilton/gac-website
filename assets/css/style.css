@@ -718,16 +718,11 @@ img { max-width: 100%; display: block; }
 
 /* Page hero (interior pages) */
 .page-hero {
-  background: var(--navy-950);
+  background: linear-gradient(135deg, var(--navy-800) 0%, var(--navy-950) 65%);
   color: var(--cream-50);
   padding: calc(var(--nav-height) + 3.5rem) 0 3.5rem;
   position: relative;
   overflow: hidden;
-}
-.page-hero::after {
-  content: "";
-  position: absolute; inset: 0;
-  background-image: repeating-linear-gradient(0deg, rgba(201,161,92,0.05) 0 22px, transparent 22px 44px);
 }
 .page-hero > .container { position: relative; }
 .page-hero h1 { color: var(--cream-50); font-size: var(--step-4); }
