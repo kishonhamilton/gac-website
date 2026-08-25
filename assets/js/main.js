@@ -20,6 +20,9 @@
     window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
       ? 'http://localhost:3000'
       : '';
+  // Exposed for page-specific scripts (e.g. the events calendar) that need
+  // the same backend base URL without duplicating the localhost detection.
+  window.GAC_API_BASE = API_BASE;
 
   async function loadContent() {
     try {

@@ -10,6 +10,20 @@
     <section class="section">
       <div class="container">
         <div class="section-head align-left">
+          <p class="eyebrow">Browse by Month</p>
+          <h2>Events Calendar</h2>
+          <div class="cornerstone-rule"></div>
+          <p>Pick a month, then click any day (or an event) to see the details.</p>
+        </div>
+        <div class="events-calendar-wrap">
+          <div id="events-calendar" aria-live="polite"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-alt">
+      <div class="container">
+        <div class="section-head align-left">
           <p class="eyebrow">Upcoming</p>
           <h2>Upcoming Events</h2>
           <div class="cornerstone-rule"></div>
@@ -34,8 +48,12 @@
             </div>
           </div>
         </div>
+      </div>
+    </section>
 
-        <div class="section-head align-left mt-lg">
+    <section class="section">
+      <div class="container">
+        <div class="section-head align-left">
           <p class="eyebrow">Archive</p>
           <h2>Past Events</h2>
           <div class="cornerstone-rule"></div>
@@ -53,3 +71,114 @@
       </div>
     </section>
   </main>
+
+  <div class="event-modal-overlay" id="eventModalOverlay">
+    <div class="event-modal" role="dialog" aria-modal="true" aria-labelledby="eventModalDate">
+      <button type="button" class="event-modal-close" id="eventModalClose" aria-label="Close">&times;</button>
+      <span class="event-modal-date" id="eventModalDate"></span>
+      <div id="eventModalBody"></div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var calendarEl = document.getElementById('events-calendar');
+      if (!calendarEl || typeof FullCalendar === 'undefined') return;
+
+      var API_BASE = window.GAC_API_BASE || '';
+      var overlay = document.getElementById('eventModalOverlay');
+      var modalDate = document.getElementById('eventModalDate');
+      var modalBody = document.getElementById('eventModalBody');
+      var modalClose = document.getElementById('eventModalClose');
+
+      function closeModal() { overlay.classList.remove('is-open'); }
+      modalClose.addEventListener('click', closeModal);
+      overlay.addEventListener('click', function (e) { if (e.target === overlay) closeModal(); });
+      document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeModal(); });
+
+      function escapeHtml(str) {
+        var div = document.createElement('div');
+        div.textContent = str || '';
+        return div.innerHTML;
+      }
+
+      function formatTime(dateStr, timeStr) {
+        if (!timeStr) return '';
+        var d = new Date(dateStr + 'T' + timeStr);
+        return isNaN(d) ? timeStr : d.toLocaleTimeString(undefined, { hour: 'numeric', minute: '2-digit' });
+      }
+
+      function isAllDay(p) {
+        return p.startTime === '00:00:00' && p.endTime === '23:59:59';
+      }
+
+      function renderEventItem(title, p) {
+        var timeStr = isAllDay(p)
+          ? 'All Day'
+          : [formatTime(p.date, p.startTime), formatTime(p.date, p.endTime)].filter(Boolean).join(' – ');
+        var details = [p.location, p.description].filter(Boolean).join(' — ');
+        return (
+          '<div class="event-modal-item">' +
+            '<h3>' + escapeHtml(title) + '</h3>' +
+            '<span class="meta">' + escapeHtml(timeStr) + '</span>' +
+            (details ? '<p>' + escapeHtml(details) + '</p>' : '') +
+            (p.leaderName ? '<p class="meta">Led by ' + escapeHtml(p.leaderName) + '</p>' : '') +
+          '</div>'
+        );
+      }
+
+      function openModalForDate(dateStr, events) {
+        var d = new Date(dateStr + 'T00:00:00');
+        modalDate.textContent = isNaN(d)
+          ? dateStr
+          : d.toLocaleDateString(undefined, { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' });
+        modalBody.innerHTML = events.length
+          ? events.map(function (ev) { return renderEventItem(ev.title, ev.extendedProps); }).join('')
+          : '<p class="event-modal-empty">No events scheduled for this day.</p>';
+        overlay.classList.add('is-open');
+      }
+
+      var calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'dayGridMonth',
+        headerToolbar: { left: 'prev,next today', center: 'title', right: 'dayGridMonth,listMonth' },
+        height: 'auto',
+        events: function (info, successCallback, failureCallback) {
+          fetch(API_BASE + '/api/events?date_start=' + info.startStr.slice(0, 10) + '&date_end=' + info.endStr.slice(0, 10))
+            .then(function (res) {
+              if (!res.ok) throw new Error('HTTP ' + res.status);
+              return res.json();
+            })
+            .then(function (data) {
+              successCallback(
+                (data.events || []).map(function (ev) {
+                  var allDay = isAllDay(ev);
+                  return {
+                    id: ev.id,
+                    title: ev.title,
+                    start: allDay ? ev.date : ev.date + 'T' + ev.startTime,
+                    end: allDay ? undefined : ev.date + 'T' + ev.endTime,
+                    allDay: allDay,
+                    extendedProps: ev,
+                  };
+                })
+              );
+            })
+            .catch(function (err) {
+              console.warn('[GAC] Could not load calendar events.', err);
+              failureCallback(err);
+            });
+        },
+        dateClick: function (info) {
+          var dayEvents = calendar.getEvents().filter(function (ev) {
+            return ev.startStr.slice(0, 10) === info.dateStr;
+          });
+          openModalForDate(info.dateStr, dayEvents);
+        },
+        eventClick: function (info) {
+          openModalForDate(info.event.startStr.slice(0, 10), [info.event]);
+        },
+      });
+      calendar.render();
+    });
+  </script>
