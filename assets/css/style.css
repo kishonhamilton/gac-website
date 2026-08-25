@@ -675,19 +675,6 @@ img { max-width: 100%; display: block; }
   border: 0;
 }
 
-/* Filters (sermons) */
-.filter-bar {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.9rem;
-  margin-bottom: 2.5rem;
-  padding: 1.4rem;
-  background: var(--cream-100);
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-}
-.filter-bar .field { min-width: 160px; flex: 1; }
-
 /* Two-col info list (plan your visit) */
 .faq-list { display: grid; gap: 1.6rem; }
 @media (min-width: 760px) { .faq-list { grid-template-columns: 1fr 1fr; gap: 2rem 3rem; } }

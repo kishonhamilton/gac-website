@@ -50,12 +50,15 @@ see the CCB integration section below for why.
 - Sticky nav that goes solid on scroll, polished mobile hamburger menu
 - Hero with subtle parallax that **respects `prefers-reduced-motion`**
 - Service times rendered from `content.json` (edit one file, updates everywhere)
-- Accessible forms (visitor + contact), with server-side validation scaffold
-- Sermon filtering UI (client-side demo, ready to back with real data)
+- Contact and visitor forms embedded directly from CCB (no custom backend)
 - Give page that links out to the church's existing giving provider — no
   payment handling on this site
-- Full CCB integration **architecture**: service abstraction layer, OAuth/SSO
-  redirect flow, role-based route protection, secure cookie handling
+- Live CCB events calendar (FullCalendar, `events.html`) backed by the
+  `/api/events` Cloud Function, which calls CCB's `public_calendar_listing`
+  service
+- Member Login is a direct link to CCB's own login page — CCB's API has no
+  OAuth2/SSO, so this site never authenticates members itself (see the CCB
+  integration section below)
 - SEO metadata, Organization/Church schema, semantic HTML, WCAG 2.2 AA
   targeted accessibility (skip link, focus states, ARIA, alt text)
 
@@ -63,11 +66,9 @@ see the CCB integration section below for why.
 - Church address(es), phone, email, office hours (`content.json` → `contact`)
 - Leadership names/photos/bios (`content.json` → `leadership`, and `about.html`)
 - Ministry listings (`content.json` → `ministries`, and `ministries.html`)
-- Events (`events.html` — wire to CCB Events API once available, see below)
-- Sermon library data (`sermons.html`)
-- Giving provider URL (`content.json` → `giving.givingUrl`)
-- Social media links (`content.json` → `social`)
-- `CCB_*` credentials in `server/.env`
+- `CCB_*` credentials in `functions/.env` / Firebase Secret Manager
+- Real service times, addresses, and details for the Williamsbridge and BVI
+  campuses (`about.html#our-campuses`)
 
 None of this content was fabricated — per the project spec, missing content
 is left as a clearly marked placeholder rather than invented.
@@ -191,8 +192,8 @@ root, your changes will be overwritten on the next build.
 - `assets/img/og-cover.jpg` is a pre-cropped 1200×630 social-share image
   generated from the same photo, wired into the Open Graph tags in every
   page's `<head>`.
-- Remaining placeholder images (interior photo, ministry/event/sermon
-  thumbnails, leadership headshots) are still solid-color CSS panels —
+- Remaining placeholder images (interior photo, ministry/event
+  thumbnails, campus photos) are still solid-color CSS panels —
   run a Lighthouse/axe audit again once those are replaced with real,
   optimized photos before launch.
 
