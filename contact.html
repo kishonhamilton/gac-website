@@ -145,13 +145,13 @@
 
     <section class="section section-alt">
       <div class="container">
-        <div class="reveal contact-form-section">
+        <div class="reveal section-head align-left">
           <p class="eyebrow">Reach Us</p>
-          <h2>Find Us</h2>
-          <div class="placeholder-block" style="aspect-ratio:4/3; margin-top:1.5rem;">
-            <span><span class="placeholder-flag">Map placeholder</span><br>Embed Google Maps once address is confirmed</span>
-          </div>
+          <h2>Find a Campus</h2>
+          <p>Pins mark our U.S. campuses. We also have a campus in Tortola, BVI — see
+          <a href="about.html#our-campuses">Our Campuses</a> for every location.</p>
         </div>
+        <div id="campus-map" class="campus-map reveal" role="img" aria-label="Map of Gospel Assembly Church U.S. campuses"></div>
       </div>
     </section>
 
@@ -169,6 +169,48 @@
       </div>
     </section>
   </main>
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var mapEl = document.getElementById('campus-map');
+      if (!mapEl || typeof L === 'undefined') return;
+
+      var campuses = [
+        { name: 'Mount Vernon, NY Campus (HQ)', address: '140 W 1st St, Mount Vernon, NY 10550', lat: 40.910121, lng: -73.842552 },
+        { name: 'Williamsbridge, Bronx, NY Campus', address: '3821 Bronxwood Ave, Bronx, NY 10469', lat: 40.882416, lng: -73.856766 },
+        { name: 'Lithonia, GA Campus', address: '7771 Pleasant Hill Rd, Lithonia, GA 30058', lat: 33.734583, lng: -84.070381 },
+      ];
+
+      var pinIcon = L.divIcon({
+        className: 'campus-map-pin',
+        html: '<span></span>',
+        iconSize: [22, 22],
+        iconAnchor: [11, 22],
+        popupAnchor: [0, -20],
+      });
+
+      var map = L.map(mapEl, { scrollWheelZoom: false });
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 18,
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+      }).addTo(map);
+
+      var markers = campuses.map(function (c) {
+        var directionsUrl = 'https://www.google.com/maps/dir/?api=1&destination=' + encodeURIComponent(c.address);
+        return L.marker([c.lat, c.lng], { icon: pinIcon, title: c.name })
+          .addTo(map)
+          .bindPopup(
+            '<strong>' + c.name + '</strong><br>' + c.address +
+            '<br><a href="' + directionsUrl + '" target="_blank" rel="noopener">Get Directions &rarr;</a>'
+          );
+      });
+
+      var group = L.featureGroup(markers);
+      map.fitBounds(group.getBounds(), { padding: [40, 40] });
+    });
+  </script>
 
   <footer class="site-footer">
     <div class="container">

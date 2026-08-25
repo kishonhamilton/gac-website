@@ -675,6 +675,31 @@ img { max-width: 100%; display: block; }
   border: 0;
 }
 
+/* Campus map (Leaflet) */
+.campus-map {
+  margin-top: 1.5rem;
+  height: 420px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--cream-50);
+}
+.campus-map .leaflet-popup-content-wrapper {
+  border-radius: calc(var(--radius) - 4px);
+  font-family: var(--font-body);
+}
+.campus-map .leaflet-popup-content a { color: var(--brick-600); font-weight: 600; }
+.campus-map-pin span {
+  display: block;
+  width: 22px;
+  height: 22px;
+  background: var(--brick-600);
+  border: 3px solid var(--cream-50);
+  border-radius: 50% 50% 50% 0;
+  transform: rotate(-45deg);
+  box-shadow: var(--shadow-soft);
+}
+
 /* Two-col info list (plan your visit) */
 .faq-list { display: grid; gap: 1.6rem; }
 @media (min-width: 760px) { .faq-list { grid-template-columns: 1fr 1fr; gap: 2rem 3rem; } }
