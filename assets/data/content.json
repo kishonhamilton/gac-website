@@ -11,20 +11,33 @@
     {
       "day": "Sunday",
       "services": [
-        { "name": "Sunday School", "time": "9:30 AM – 10:45 AM", "location": "In Person" },
-        { "name": "Mid-Day Worship", "time": "11:00 AM – 1:30 PM", "location": "In Person" }
+        { "name": "Christian Education", "time": "9:30 AM", "location": "In Person" },
+        { "name": "Divine Worship Experience", "time": "11:00 AM – 2:00 PM", "location": "In Person" },
+        { "name": "Evangelistic Service", "time": "7:30 PM", "location": "In Person" }
+      ]
+    },
+    {
+      "day": "Tuesday",
+      "services": [
+        { "name": "Bible Study", "time": "7:30 PM", "location": "Online via Zoom — ID: 833-755-8781" }
       ]
     },
     {
       "day": "Wednesday",
       "services": [
-        { "name": "Bible Class", "time": "7:30 PM – 9:00 PM", "location": "Online via Zoom" }
+        { "name": "Fasting Service", "time": "11:00 AM", "location": "In Person" }
       ]
     },
     {
       "day": "Thursday",
       "services": [
-        { "name": "Prayer", "time": "7:30 PM – 9:00 PM", "location": "Online via Zoom" }
+        { "name": "Prayer Meeting", "time": "7:30 PM", "location": "In Person" }
+      ]
+    },
+    {
+      "day": "Friday",
+      "services": [
+        { "name": "Youth Fellowship", "time": "7:30 PM", "location": "In Person" }
       ]
     }
   ],
