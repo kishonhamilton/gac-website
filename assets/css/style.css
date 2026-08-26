@@ -90,7 +90,11 @@ img { max-width: 100%; display: block; }
   display: inline-block;
   font-family: var(--font-body);
   font-weight: 700;
-  font-size: var(--step--1);
+  /* !important: the badge's own size is intrinsic and must not be
+     overridden by ambient "p { font-size }" rules on whatever section
+     it's dropped into (.page-hero p, .section-head p, etc. all set a
+     larger font-size with equal-or-higher specificity otherwise). */
+  font-size: var(--step--1) !important;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--brick-600);

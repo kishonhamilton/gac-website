@@ -2,20 +2,53 @@
     <section class="page-hero">
       <div class="container">
         <p class="breadcrumb"><a href="index.html">Home</a> / Give</p>
-        <h1>Give</h1>
+        <p class="eyebrow" style="color:var(--gold-300); background:rgba(228,205,156,0.1); border-color:rgba(228,205,156,0.3);">Giving at Gospel Assembly Church</p>
+        <h1>Invest in the Kingdom</h1>
         <p>Your generosity helps us continue the work of ministry, reach our community, and advance the Kingdom of God.</p>
+        <p style="margin-top:1.5rem;">
+          <a class="btn btn-gold" data-give-online href="#" target="_blank" rel="noopener">Give Online &rarr;</a>
+        </p>
       </div>
     </section>
 
     <section class="section">
       <div class="container">
+        <div class="reveal" style="max-width:52ch; margin:0 auto; text-align:center; background:var(--cream-100); border-radius:var(--radius); padding:clamp(2rem, 5vw, 3rem);">
+          <p style="font-family:var(--font-display); font-style:italic; font-size:var(--step-2); color:var(--navy-950); margin-bottom:0.6em;">
+            &ldquo;Each one must give as he has decided in his heart, not reluctantly or under
+            compulsion, for God loves a cheerful giver.&rdquo;
+          </p>
+          <p style="margin:0; font-weight:700; color:var(--brick-600);">2 Corinthians 9:7</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-navy">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">Our Goal Is Simple</p>
+          <h2>Reach, Teach, and Win</h2>
+          <p>Every gift helps us do what we've always been about &mdash; reaching people with the
+          Gospel, teaching the Word of God, and winning souls for the Kingdom. What you sow here
+          reaches our campuses, our community, and the world beyond it.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-alt">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">Ways to Give</p>
+          <h2>Choose What Works for You</h2>
+          <div class="cornerstone-rule"></div>
+        </div>
         <div class="card-grid">
           <div class="card reveal">
             <div class="card-body">
               <span class="card-meta">Online</span>
               <h3>Give Online</h3>
               <p>Give securely through our approved online giving provider.</p>
-              <a class="btn btn-primary" id="giveOnlineLink" href="#" target="_blank" rel="noopener">Give Online</a>
+              <a class="btn btn-primary" data-give-online href="#" target="_blank" rel="noopener">Give Online</a>
             </div>
           </div>
           <div class="card reveal">
@@ -35,15 +68,40 @@
         </div>
       </div>
     </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head align-left">
+          <p class="eyebrow">Have Questions?</p>
+          <h2>We're Here to Help</h2>
+          <p>If you have any questions about giving, reach out to our office &mdash; our team is
+          glad to help. <a href="contact.html">Contact us &rarr;</a></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="cta-band reveal">
+          <h2>Ready to Give?</h2>
+          <p>Thank you for partnering with us in ministry &mdash; your generosity makes a real
+          difference in our church family and community.</p>
+          <div class="cta-actions">
+            <a class="btn btn-gold" data-give-online href="#" target="_blank" rel="noopener">Give Online</a>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
 
   <script>
     document.addEventListener('gac:content-ready', function (e) {
       var content = e.detail;
       if (!content) return;
-      var link = document.getElementById('giveOnlineLink');
-      if (link && content.giving && content.giving.givingUrl) {
-        link.href = content.giving.givingUrl;
+      if (content.giving && content.giving.givingUrl) {
+        document.querySelectorAll('[data-give-online]').forEach(function (link) {
+          link.href = content.giving.givingUrl;
+        });
       }
       var check = document.getElementById('checkInstructions');
       if (check && content.giving && content.giving.giveByCheckInstructions) {
