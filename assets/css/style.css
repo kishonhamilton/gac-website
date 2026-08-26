@@ -778,7 +778,7 @@ img { max-width: 100%; display: block; }
 .give-verse p {
   font-family: var(--font-display);
   font-style: italic;
-  font-weight: 400;
+  font-weight: 500;
   font-size: var(--step-1);
   line-height: 1.5;
   color: rgba(250,246,239,0.92);
@@ -828,6 +828,7 @@ img { max-width: 100%; display: block; }
   position: absolute; top: 0; left: 0; right: 0;
   height: 34px;
   background: var(--gold-300);
+  -webkit-clip-path: polygon(0 0, 50% 78%, 100% 0);
   clip-path: polygon(0 0, 50% 78%, 100% 0);
   border-radius: var(--radius) var(--radius) 0 0;
 }
