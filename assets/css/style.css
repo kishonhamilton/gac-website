@@ -40,7 +40,7 @@
 
   --radius: 14px;
   --shadow-soft: 0 10px 30px -12px rgba(16, 25, 46, 0.25);
-  --nav-height: 92px;
+  --nav-height: 138px;
 }
 
 /* =====================  Reset & base  ===================== */
@@ -251,15 +251,15 @@ img { max-width: 100%; display: block; }
   flex-shrink: 0;
 }
 .site-header .brand-logo {
-  width: 64px;
-  height: 64px;
+  width: 96px;
+  height: 96px;
 }
 
 .primary-nav { display: none; }
 .primary-nav ul {
   list-style: none;
   display: flex;
-  gap: 1.9rem;
+  gap: 2.85rem;
   margin: 0;
   padding: 0;
   align-items: center;
@@ -267,7 +267,7 @@ img { max-width: 100%; display: block; }
 .primary-nav a {
   text-decoration: none;
   font-weight: 600;
-  font-size: 0.95rem;
+  font-size: 1.425rem;
   color: var(--cream-50);
   padding: 0.4rem 0.1rem;
   border-bottom: 2px solid transparent;
@@ -282,7 +282,7 @@ img { max-width: 100%; display: block; }
 .primary-nav li.has-dropdown > a::after {
   content: '';
   display: inline-block;
-  width: 5px; height: 5px;
+  width: 7.5px; height: 7.5px;
   margin-left: 0.4em;
   border-right: 1.5px solid currentColor;
   border-bottom: 1.5px solid currentColor;
@@ -316,7 +316,7 @@ img { max-width: 100%; display: block; }
   display: block;
   color: var(--navy-950);
   font-family: var(--font-body);
-  font-size: 0.88rem;
+  font-size: 1.32rem;
   font-weight: 500;
   padding: 0.55rem 1.2rem;
   border-bottom: none;
@@ -340,13 +340,13 @@ img { max-width: 100%; display: block; }
   background: none;
   border: none;
   color: var(--cream-50);
-  width: 44px; height: 44px;
+  width: 66px; height: 66px;
   align-items: center;
   justify-content: center;
   cursor: pointer;
 }
 .site-header.is-solid .nav-toggle { color: var(--navy-950); }
-.nav-toggle svg { width: 26px; height: 26px; }
+.nav-toggle svg { width: 39px; height: 39px; }
 
 .mobile-nav {
   position: fixed;
